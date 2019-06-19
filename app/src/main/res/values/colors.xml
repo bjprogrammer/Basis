@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#448F61</color>
+    <color name="colorPrimaryDark">#158741</color>
+    <color name="colorAccent">#6FB48A</color>
+    <color name="error">#E93455</color>
+    <color name="toast">#CCCCCC</color>
+    <color name="primarytext">#212121</color>
+    <color name="holderColor">#DAE0DC</color>
+    <color name="disable">#CCCCCC</color>
+</resources>

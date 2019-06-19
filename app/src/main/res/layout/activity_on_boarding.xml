@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+<io.codetail.widget.RevealFrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".onBoarding.onBoardingActivity">
+
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/awesome_card"
+        style="@style/CardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.github.jorgecastillo.FillableLoader
+            android:id="@+id/fillableLoader"
+            android:layout_width="300dp"
+            android:layout_height="90dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            app:fl_originalWidth="450"
+            app:fl_originalHeight="110"
+            app:fl_strokeColor="@android:color/white"
+            app:fl_strokeWidth="1dp"
+            app:fl_strokeDrawingDuration="1500"
+            app:fl_fillDuration= "500"
+            app:fl_fillColor="@android:color/white"
+            app:fl_clippingTransform="rounded"
+            app:fl_fillPercentage="100" />
+
+        <TextView
+            android:id="@+id/subtext"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="EMPOWERING NEXT 100 MILLION"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:visibility="invisible"
+            android:textColor="@android:color/white"
+            android:layout_below="@+id/fillableLoader"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="32dp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</io.codetail.widget.RevealFrameLayout>
+</layout>

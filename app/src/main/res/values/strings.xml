@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Basis</string>
+
+    <string name="no_wifi">No Internet Connection</string>
+    <string name="no_wifi_message">Please check your internet connection.</string>
+</resources>
