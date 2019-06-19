@@ -3,4 +3,5 @@
 
     <string name="no_wifi">No Internet Connection</string>
     <string name="no_wifi_message">Please check your internet connection.</string>
+    <string name="nothing_to_show">Nothing to Show</string>
 </resources>
