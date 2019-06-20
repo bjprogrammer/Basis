@@ -8,6 +8,40 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF">
 
+        <include
+            android:id="@+id/app_bar"
+            layout="@layout/app_bar" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/app_bar"
+            android:weightSum="1">
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:foregroundGravity="center"
+                android:id="@+id/viewPager"
+                android:overScrollMode="never"
+                android:clipToPadding="false"
+                android:layout_width="match_parent"
+                android:layout_weight="0.9"
+                android:layout_height="0dp">
+            </androidx.viewpager.widget.ViewPager>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="0.1"
+                android:textColor="@android:color/black"
+                android:id="@+id/pager"
+                android:textSize="22sp"/>
+        </LinearLayout>
+
+
         <com.github.loadingview.LoadingView
             android:id="@+id/loadingView"
             android:layout_width="72dp"

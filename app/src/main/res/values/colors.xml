@@ -8,4 +8,16 @@
     <color name="primarytext">#212121</color>
     <color name="holderColor">#DAE0DC</color>
     <color name="disable">#CCCCCC</color>
+
+    <color name="yellow">#ffa726</color>
+    <color name="orange">#e96104</color>
+    <color name="blue">#00aeef</color>
+    <color name="blue_gray">#78909c</color>
+
+    <array name="rainbow">
+         <item>@color/blue</item>
+        <item>@color/orange</item>
+        <item>@color/blue_gray</item>
+        <item>@color/yellow</item>
+    </array>
 </resources>

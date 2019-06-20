@@ -28,6 +28,7 @@ public class MainPresenter implements  MainContract.Presenter{
         //Checking local storage for data else fetching it from server
         String response=pref.getString(Constants.DATA,null);
         if( response!=null){
+            view.removeWait();
             view.onSuccess(gson.fromJson(response, BasisResponse.class));
         }
         else

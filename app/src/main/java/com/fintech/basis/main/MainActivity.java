@@ -1,19 +1,24 @@
 package com.fintech.basis.main;
 
+import android.animation.ArgbEvaluator;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.ViewPager;
 
 import com.andrognito.flashbar.Flashbar;
 import com.fintech.basis.R;
 import com.fintech.basis.databinding.ActivityMainBinding;
+import com.fintech.basis.databinding.AppBarBinding;
 import com.fintech.basis.model.BasisResponse;
 import com.fintech.basis.utils.ConnectivityReceiver;
 import com.fintech.basis.utils.Constants;
@@ -40,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements  ConnectivityRece
     private LoadingView progress;
     private List<BasisResponse.BasisData> data;
     private TextView emptyMessage;
+    private ViewPager viewPager;
+    private Integer[] colors = null;
+    private ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+    private  TextView pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +69,19 @@ public class MainActivity extends AppCompatActivity implements  ConnectivityRece
         intentFilter = new IntentFilter();
         intentFilter.addAction(CONNECTIVITY_ACTION);
         receiver = new ConnectivityReceiver();
+
+        getSupportActionBar().setTitle("Basis App");
     }
 
 
     private void renderView() {
         progress = binding.loadingView;
         emptyMessage = binding.emptyMessage;
+        viewPager = binding.viewPager;
+        pager = binding.pager;
+        AppBarBinding appBarBinding = binding.appBar;
+        setSupportActionBar(appBarBinding.toolbar);
+
     }
 
 
@@ -94,7 +110,24 @@ public class MainActivity extends AppCompatActivity implements  ConnectivityRece
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+            switch (item.getItemId()) {
+                case R.id.sync:
+                    viewPager.setCurrentItem(0,true);
+                    return  true;
+
+                default:
+                    return super.onOptionsItemSelected(item);
+            }
+
     }
 
     @Override
@@ -142,8 +175,31 @@ public class MainActivity extends AppCompatActivity implements  ConnectivityRece
 
          if(data.size()>0) {
              int lastIndex = pref.getInt(Constants.LAST_ID, 0);
-             String text = data.get(lastIndex).getText();
              emptyMessage.setVisibility(View.GONE);
+
+
+             MainAdapter adapter=new MainAdapter(data,this);
+             viewPager.setAdapter(adapter);
+             viewPager.setPadding(130, 60, 130, 20);
+
+
+             viewPager.setCurrentItem(lastIndex);
+             viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                 @Override
+                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                     int index = position + 1;
+                     pager.setText("Page:"+ index+"/"+data.size());
+
+                     editor.putInt(Constants.LAST_ID,position);
+                     editor.commit();
+                 }
+
+                 @Override
+                 public void onPageSelected(int position) { }
+
+                 @Override
+                 public void onPageScrollStateChanged(int state) { }
+             });
 
          }
          else {
